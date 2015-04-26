@@ -90,7 +90,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			do_common_azure_stuff.call azure, override
 			azure.vm_name = 'elastic-1'
 			azure.ssh_port = "2221"
-			azure.tcp_endpoints = "80:8081"
+			azure.tcp_endpoints = "80"
 			cfg.ssh.username = "vagrant"
 			cfg.ssh.password = CONF['password']
 			cfg.vm.provision "shell", inline: $script
@@ -102,7 +102,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			do_common_azure_stuff.call azure, override
 			azure.vm_name = 'elastic-2'
 			azure.ssh_port = "2222"
-			azure.tcp_endpoints = "80:8082"
 			cfg.ssh.username = "vagrant"
 			cfg.ssh.password = CONF['password']
 			cfg.vm.provision "shell", inline: $script

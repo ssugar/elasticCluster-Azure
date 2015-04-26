@@ -35,3 +35,13 @@ In the same folder as your Vagrantfile, create a file called vagrantconfig.yaml.
 
 ###Bring VMs up###
     vagrant up --provider=azure
+	
+###Configure Load Balancing###
+You may notice in the vagrantfile that only the first VM gets a TCP port 80 endpoint.  To complete load balancing across the set, do the following:
++ Log into the Azure Management Portal
++ Go to the Endpoints screen for the first VM
++ Configure the existing TCP port 80 endpoint as a Load Balanced Set
++ Go to all other VMs Endpoint screen
++ Add and Endpoint to an Existing Load Balanced Set
+
+*Future improvement* - Use the Azure Service Management REST API to configure the load balanced set programatically.
