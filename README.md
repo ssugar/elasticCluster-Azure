@@ -61,20 +61,20 @@ The elasticsearch nodes won't talk to each other without some help.
 + Convert the az_cert.pem file to .pkcs12 with the following command:
   * You will be prompted for a password, it will be used in the elasticsearch.yml file
 
-      openssl pkcs12 -export -in az_cert.pem -out az_keystore.pkcs12 -name azure -noiter -nomaciter
+             openssl pkcs12 -export -in az_cert.pem -out az_keystore.pkcs12 -name azure -noiter -nomaciter
 
 + Upload the resultant .pkcs12 file to each VM, remember the path
 + Insert the following into the elasticsearch.yml file just above the Slow Log section:
 
-      cloud:
-          azure:
-               subscription_id: XXXXXXXX-XXXX-XXXX-XXXXX-XXXXXXXXXXXX
-               service_name: desired_cloud_service_name
-               keystore: /path/to/az_keystore.pkcs12
-               password: password_set_when_creating_pkcs12_file
+             cloud:
+                 azure:
+                      subscription_id: XXXXXXXX-XXXX-XXXX-XXXXX-XXXXXXXXXXXX
+                      service_name: desired_cloud_service_name
+                      keystore: /path/to/az_keystore.pkcs12
+                      password: password_set_when_creating_pkcs12_file
 
-      discovery:
-          type: azure
+             discovery:
+                 type: azure
 
 + Restart elasticsearch
 
