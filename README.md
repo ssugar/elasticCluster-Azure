@@ -78,10 +78,8 @@ The elasticsearch nodes won't talk to each other without some help.
 
 + Restart elasticsearch
 
-      service elasticsearch restart
+             service elasticsearch restart
 
 + Check elasticsearch logs to see if this works, or if there are errors:
 
-      tail -f /var/log/elasticsearch/elasticsearch.log
-
-
+             tail -f /var/log/elasticsearch/elasticsearch.log
