@@ -25,7 +25,7 @@ cd /home/vagrant
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/localELK/elasticsearch-1.4.2.deb > elasticsearch-1.4.2.deb
 dpkg -i elasticsearch-1.4.2.deb
 update-rc.d elasticsearch defaults 95 10
-curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-ELK/master/cookbooks/ss_kibana/files/default/elasticsearch.yml > elasticsearch.yml
+curl -XGET https://raw.githubusercontent.com/ssugar/elasticCluster-Azure/master/elasticsearch.yml > elasticsearch.yml
 cp /home/vagrant/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 service elasticsearch start
 
@@ -56,8 +56,11 @@ curl -XGET https://raw.githubusercontent.com/ssugar/elasticCluster-Azure/master/
 sh updatedEsMappings.sh
 
 #Configure nginx as a proxy so elasticsearch doesnt need to be public
-curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-Azure/master/nginx.conf > nginx.conf
+curl -XGET https://raw.githubusercontent.com/ssugar/elasticCluster-Azure/master/nginx.conf > nginx.conf
 cp /home/vagrant/nginx.conf /etc/nginx/sites-available/default
+
+#Install the Elasticsearch-cloud-azure plugin.  Using version 2.5.1 which matches with ES version 1.4.2
+/usr/share/elasticsearch/bin/plugin install elasticsearch/elasticsearch-cloud-azure/2.5.1
 
 #Update Kibana configuration to point to elasticsearch proxy on port 80
 curl -XGET https://raw.githubusercontent.com/ssugar/senseHCMC-Azure/master/kibana_config.js > kibana_config.js
