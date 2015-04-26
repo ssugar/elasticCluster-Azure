@@ -55,7 +55,7 @@ The elasticsearch nodes won't talk to each other without some help.
 + Install the Azure Cloud Plugin for Elasticsearch
   * Note: We are installing version 2.5.1 because that matches up with elasticsearch version 1.4.2
 
-      /usr/share/elasticsearch/bin/plugin install elasticsearch/elasticsearch-cloud-azure/2.5.1
+             /usr/share/elasticsearch/bin/plugin install elasticsearch/elasticsearch-cloud-azure/2.5.1
 
 + Upload the az_cert.pem file to the cloud service
 + Convert the az_cert.pem file to .pkcs12 with the following command:
