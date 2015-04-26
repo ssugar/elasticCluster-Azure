@@ -57,7 +57,7 @@ The elasticsearch nodes won't talk to each other without some help.
 
              /usr/share/elasticsearch/bin/plugin install elasticsearch/elasticsearch-cloud-azure/2.5.1
 
-+ Upload the az_cert.pem file to the cloud service
++ Upload the az_cert.pem file created earlier to the cloud service via the Azure Management Portal
 + Convert the az_cert.pem file to .pkcs12 with the following command:
   * You will be prompted for a password, it will be used in the elasticsearch.yml file
 
