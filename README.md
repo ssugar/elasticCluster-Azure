@@ -44,4 +44,32 @@ You may notice in the vagrantfile that only the first VM gets a TCP port 80 endp
 + Go to all other VMs Endpoint screen
 + Add and Endpoint to an Existing Load Balanced Set
 
-*Future improvement* - Use the Azure Service Management REST API to configure the load balanced set programatically.
+**Future Improvement** - Use the Azure Service Management REST API to configure the load balanced set programatically.
+
+###Set Up Elasticsearch Cluster Discovery in Azure###
+The elasticsearch nodes won't talk to each other without some help.  
+
+**Future Improvement** - Integrate the following into the deployment process.
+
+######To be done on each VM######
++ Upload the az_cert.pem file to the cloud service
++ Convert the az_cert.pem file to .pkcs12 with the following command:
+  * You will be prompted for a password, it will be used in the elasticsearch.yml file
+    openssl pkcs12 -export -in az_cert.pem -out az_keystore.pkcs12 -name azure -noiter -nomaciter
++ Upload the resultant .pkcs12 file to each VM, remember the path
++ Insert the following into the elasticsearch.yml file just above the Slow Log section:
+    cloud:
+        azure:
+             subscription_id: XXXXXXXX-XXXX-XXXX-XXXXX-XXXXXXXXXXXX
+             service_name: desired_cloud_service_name
+             keystore: /path/to/az_keystore.pkcs12
+             password: password_set_when_creating_pkcs12_file
+
+    discovery:
+        type: azure
++ Restart elasticsearch
+    service elasticsearch restart
++ Check elasticsearch logs to see if this works, or if there are errors:
+    tail -f /var/log/elasticsearch/elasticsearch.log
+
+
