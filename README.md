@@ -52,11 +52,6 @@ The elasticsearch nodes won't talk to each other without some help.
 **Future Improvement** - Integrate the following into the deployment process.
 
 ######To be done on each VM######
-+ Install the Azure Cloud Plugin for Elasticsearch
-  * Note: We are installing version 2.5.1 because that matches up with elasticsearch version 1.4.2
-
-             /usr/share/elasticsearch/bin/plugin install elasticsearch/elasticsearch-cloud-azure/2.5.1
-
 + Upload the az_cert.pem file created earlier to the cloud service via the Azure Management Portal
 + Convert the az_cert.pem file to .pkcs12 with the following command:
   * You will be prompted for a password, it will be used in the elasticsearch.yml file
@@ -64,7 +59,7 @@ The elasticsearch nodes won't talk to each other without some help.
              openssl pkcs12 -export -in az_cert.pem -out az_keystore.pkcs12 -name azure -noiter -nomaciter
 
 + Upload the resultant .pkcs12 file to each VM, remember the path
-+ Insert the following into the elasticsearch.yml file just above the Slow Log section:
++ Uncomment and update the following in the /etc/elasticsearch/elasticsearch.yml file just above the Slow Log section.  Around line 350:
 
              cloud:
                  azure:

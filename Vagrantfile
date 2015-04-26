@@ -83,7 +83,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		azure.vm_name = "elastic"
 		azure.cloud_service_name = CONF['servicename']
 		azure.storage_acct_name = CONF['storagename']
-		azure.vm_location = "East US"
+		azure.vm_location = "Southeast Asia"
 		azure.private_key_file = "vm_cert.key"
 		azure.certificate_file = "vm_cert.pem"
    end
